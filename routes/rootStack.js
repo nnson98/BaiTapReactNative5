@@ -8,12 +8,11 @@ import Post from '../screens/post';
 import Notifications from '../screens/notifications';
 import Account from '../screens/account';
 import Logout from '../screens/logout';
-import {IconI} from 'react-native-vector-icons/Entypo';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {View, Text, Icon} from 'native-base';
 import {StyleSheet, Image} from 'react-native';
 import {ScrollView, TouchableOpacity} from 'react-native-gesture-handler';
-
+import Navigator from './homeStack';
 const Drawer = createDrawerNavigator();
 
 export default function RootStack() {
@@ -21,8 +20,9 @@ export default function RootStack() {
     <NavigationContainer>
       <Drawer.Navigator
         initialRouteName="Feed"
-        drawerContent={props => CustomDrawerContent(props)}>
-        <Drawer.Screen name="Feed" component={Feed} />
+        drawerContent={props => CustomDrawerContent(props)}
+        options>
+        <Drawer.Screen name="Feed" component={Navigator} />
 
         <Drawer.Screen name="Events" component={Events} />
         <Drawer.Screen name="Post" component={Post} />
@@ -56,7 +56,7 @@ function CustomDrawerContent(props) {
         <TouchableOpacity
           style={styles.viewtou}
           onPress={() => props.navigation.navigate('Feed')}>
-          <Icon name="paper" size={10} style={styles.icon} />
+          <Icon name="paper" style={styles.icon} />
           <Text style={styles.txtitem}>Feed</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -64,12 +64,7 @@ function CustomDrawerContent(props) {
         <TouchableOpacity
           style={styles.viewtou}
           onPress={() => props.navigation.navigate('Events')}>
-          <Icon
-            type="MaterialIcons"
-            name="event"
-            size={10}
-            style={styles.icon}
-          />
+          <Icon type="MaterialIcons" name="event" style={styles.icon} />
           <Text style={styles.txtitem}>Events</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -77,7 +72,7 @@ function CustomDrawerContent(props) {
         <TouchableOpacity
           style={styles.viewtou}
           onPress={() => props.navigation.navigate('Post')}>
-          <Icon name="camera" size={10} style={styles.icon} />
+          <Icon name="camera" style={styles.icon} />
           <Text style={styles.txtitem}>Post</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -85,12 +80,7 @@ function CustomDrawerContent(props) {
         <TouchableOpacity
           style={styles.viewtou}
           onPress={() => props.navigation.navigate('Notificatons')}>
-          <Icon
-            type="Ionicons"
-            name="ios-notifications"
-            size={10}
-            style={styles.icon}
-          />
+          <Icon type="Ionicons" name="ios-notifications" style={styles.icon} />
           <Text style={styles.txtitem}>Notificatons</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -101,7 +91,6 @@ function CustomDrawerContent(props) {
           <Icon
             type="MaterialCommunityIcons"
             name="account"
-            size={10}
             style={styles.icon}
           />
           <Text style={styles.txtitem}>Account</Text>
@@ -111,7 +100,7 @@ function CustomDrawerContent(props) {
         <TouchableOpacity
           style={styles.viewtou}
           onPress={() => props.navigation.navigate('Logout')}>
-          <Icon type="AntDesign" name="logout" size={10} style={styles.icon} />
+          <Icon type="AntDesign" name="logout" style={styles.icon} />
           <Text style={styles.txtitem}>Logout</Text>
         </TouchableOpacity>
       </ScrollView>
@@ -148,6 +137,7 @@ const styles = StyleSheet.create({
   },
   icon: {
     padding: 3,
+    fontSize: 25,
   },
   viewscrool: {
     marginLeft: 5,
@@ -155,9 +145,11 @@ const styles = StyleSheet.create({
   viewtou: {
     marginTop: 20,
     flexDirection: 'row',
+    justifyContent: 'flex-start',
   },
   txtitem: {
-    marginLeft: 10,
+    marginLeft: 15,
     fontSize: 16,
+    textAlignVertical: 'center',
   },
 });
