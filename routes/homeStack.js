@@ -2,7 +2,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Header from '../shared/header';
 import Feed from '../screens/home';
-import Account from '../screens/account';
+import Filters from '../screens/filters';
 
 const Stack = createStackNavigator();
 
@@ -28,9 +28,9 @@ export default function Navigator() {
         }}
       />
       <Stack.Screen
-        name="Account"
-        component={Account}
-        options={{title: 'Account'}}
+        name="Filters"
+        component={Filters}
+        options={{title: 'Filters'}}
       />
     </Stack.Navigator>
   );

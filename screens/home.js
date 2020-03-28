@@ -6,9 +6,25 @@ import {
   FlatList,
   Image,
   ImageBackground,
+  TouchableOpacity,
 } from 'react-native';
 import {Icon} from 'native-base';
 export default function Feed({navigation}) {
+  const renderFooter = () => {
+    return (
+      <View style={styles.footer}>
+        <TouchableOpacity
+          style={styles.customTou}
+          onPress={() => navigation.navigate('Filters')}>
+          <Icon
+            type="AntDesign"
+            name="filter"
+            style={{fontSize: 30, color: 'white', marginLeft: 15}}
+          />
+        </TouchableOpacity>
+      </View>
+    );
+  };
   const [data, setData] = useState([
     {
       id: '1',
@@ -45,7 +61,7 @@ export default function Feed({navigation}) {
                   <Text style={styles.name}>{item.name}</Text>
                   <Text style={styles.timestamp}>{item.time}</Text>
                 </View>
-                <Icon type="Feather" name="more-horizontal" size={24} />
+                <Icon type="Feather" name="more-horizontal" />
               </View>
               <ImageBackground
                 source={{uri: item.image}}
@@ -74,6 +90,8 @@ export default function Feed({navigation}) {
             </View>
           </View>
         )}
+        keyExtractor={item => item.id}
+        ListFooterComponent={renderFooter}
       />
     </View>
   );
@@ -146,5 +164,18 @@ const styles = StyleSheet.create({
     position: 'absolute',
     bottom: 0,
     left: 0,
+  },
+  customTou: {
+    width: 60,
+    height: 60,
+    borderRadius: 30,
+    backgroundColor: '#da4a4f',
+    alignContent: 'center',
+    justifyContent: 'center',
+  },
+  footer: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
