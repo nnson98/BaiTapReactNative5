@@ -1,14 +1,17 @@
-import React from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  ProgressBarAndroid,
-} from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import {Icon} from 'native-base';
-
+import MultiSlider from '@ptomasroos/react-native-multi-slider';
+import CustomMarker from '../shared/CustomMarker';
+import CustomLabel from '../shared/CustomLabel';
 export default function Filters() {
+  const [
+    nonCollidingMultiSliderValue,
+    setNonCollidingMultiSliderValue,
+  ] = useState([0, 100]);
+  const nonCollidingMultiSliderValuesChange = values =>
+    setNonCollidingMultiSliderValue(values);
+  const [icon, seticon] = useState('');
   return (
     <View style={styles.container}>
       <View style={styles.customview}>
@@ -90,14 +93,35 @@ export default function Filters() {
           <Text style={styles.txtreset}>RESET</Text>
         </View>
         <View style={styles.view1}>
-          <Text style={{marginLeft: 10, fontSize: 18}}>X</Text>
-          <ProgressBarAndroid
-            styleAttr="Horizontal"
-            indeterminate={false}
-            progress={0.5}
-            style={{marginLeft: 10, width: '80%', height: '100%'}}
+          <View style={styles.customview2}>
+            <Text style={{fontSize: 14}}>
+              {nonCollidingMultiSliderValue[0]}$
+            </Text>
+          </View>
+
+          <MultiSlider
+            containerStyle={{height: 40}}
+            selectedStyle={{backgroundColor: '#e44549'}}
+            values={[
+              nonCollidingMultiSliderValue[0],
+              nonCollidingMultiSliderValue[1],
+            ]}
+            sliderLength={280}
+            onValuesChange={nonCollidingMultiSliderValuesChange}
+            min={100}
+            max={2000}
+            step={100}
+            allowOverlap={false}
+            snapped
+            minMarkerOverlapDistance={40}
+            customMarker={CustomMarker}
+            customLabel={CustomLabel}
           />
-          <Text style={{fontSize: 18, marginLeft: 10}}>Y</Text>
+          <View style={styles.customview2}>
+            <Text style={{fontSize: 14, textAlign: 'center'}}>
+              {nonCollidingMultiSliderValue[1]}$
+            </Text>
+          </View>
         </View>
       </View>
       <View style={styles.customview}>
@@ -108,25 +132,67 @@ export default function Filters() {
         <View style={styles.view1}>
           <TouchableOpacity
             style={[styles.toucolor, {backgroundColor: '#1bb869'}]}
-          />
+            onPress={() => seticon('button1')}>
+            <Icon
+              type="AntDesign"
+              name={icon === 'button1' ? 'check' : null}
+              style={{color: 'white'}}
+            />
+          </TouchableOpacity>
           <TouchableOpacity
             style={[styles.toucolor, {backgroundColor: '#ea97fb'}]}
-          />
+            onPress={() => seticon('button2')}>
+            <Icon
+              type="AntDesign"
+              name={icon === 'button2' ? 'check' : null}
+              style={{color: 'white'}}
+            />
+          </TouchableOpacity>
           <TouchableOpacity
             style={[styles.toucolor, {backgroundColor: '#f6b63a'}]}
-          />
+            onPress={() => seticon('button3')}>
+            <Icon
+              type="AntDesign"
+              name={icon === 'button3' ? 'check' : null}
+              style={{color: 'white'}}
+            />
+          </TouchableOpacity>
           <TouchableOpacity
             style={[styles.toucolor, {backgroundColor: '#ef8642'}]}
-          />
+            onPress={() => seticon('button4')}>
+            <Icon
+              type="AntDesign"
+              name={icon === 'button4' ? 'check' : null}
+              style={{color: 'white'}}
+            />
+          </TouchableOpacity>
           <TouchableOpacity
             style={[styles.toucolor, {backgroundColor: '#e44549'}]}
-          />
+            onPress={() => seticon('button5')}>
+            <Icon
+              type="AntDesign"
+              name={icon === 'button5' ? 'check' : null}
+              style={{color: 'white'}}
+            />
+          </TouchableOpacity>
           <TouchableOpacity
             style={[styles.toucolor, {backgroundColor: '#bf4e79'}]}
-          />
+            onPress={() => seticon('button6')}>
+            <Icon
+              type="AntDesign"
+              name={icon === 'button6' ? 'check' : null}
+              style={{color: 'white'}}
+            />
+          </TouchableOpacity>
           <TouchableOpacity
             style={[styles.toucolor, {backgroundColor: '#70bcdb'}]}
-          />
+            onPress={() => seticon('button7')}>
+            <Icon
+              type="AntDesign"
+              name={icon === 'button7' ? 'check' : null}
+              style={{color: 'white'}}
+            />
+          </TouchableOpacity>
         </View>
       </View>
     </View>
@@ -184,5 +250,11 @@ const styles = StyleSheet.create({
     height: 30,
     borderRadius: 15,
     marginLeft: 14,
+  },
+  customview2: {
+    borderRadius: 8,
+    backgroundColor: '#ffffff',
+    borderColor: 'black',
+    borderWidth: 0,
   },
 });

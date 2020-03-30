@@ -91,8 +91,17 @@ export default function Feed({navigation}) {
           </View>
         )}
         keyExtractor={item => item.id}
-        ListFooterComponent={renderFooter}
+        //ListFooterComponent={renderFooter}
       />
+      <TouchableOpacity
+        style={styles.customTou}
+        onPress={() => navigation.navigate('Filters')}>
+        <Icon
+          type="AntDesign"
+          name="filter"
+          style={{fontSize: 30, color: 'white', marginLeft: 15}}
+        />
+      </TouchableOpacity>
     </View>
   );
 }
@@ -172,6 +181,9 @@ const styles = StyleSheet.create({
     backgroundColor: '#da4a4f',
     alignContent: 'center',
     justifyContent: 'center',
+    position: 'absolute',
+    marginHorizontal: 180,
+    marginVertical: 500,
   },
   footer: {
     flex: 1,

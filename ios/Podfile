@@ -46,6 +46,8 @@ target 'Demo5' do
 
   pod 'RNVectorIcons', :path => '../node_modules/react-native-vector-icons'
 
+  pod 'react-native-slider', :path => '../node_modules/@react-native-community/slider'
+
   target 'Demo5Tests' do
     inherit! :search_paths
     # Pods for testing
