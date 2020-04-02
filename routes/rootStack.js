@@ -1,13 +1,11 @@
 import React from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {NavigationContainer} from '@react-navigation/native';
-
-import Feed from '../screens/home';
-import Events from '../screens/about';
-import Post from '../screens/post';
-import Notifications from '../screens/notifications';
-import Account from '../screens/account';
-import Logout from '../screens/logout';
+import Events from '../screens/About';
+import Post from '../screens/Post';
+import Notifications from '../screens/Notifications';
+import Account from '../screens/Account';
+import Logout from '../screens/Logout';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {View, Text, Icon} from 'native-base';
 import {StyleSheet, Image} from 'react-native';
@@ -110,6 +108,7 @@ function CustomDrawerContent(props) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: 'column',
+    justifyContent: 'space-around',
   },
   viewimg: {
     height: 240,
@@ -148,8 +147,8 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   txtitem: {
-    marginLeft: 15,
     fontSize: 16,
     textAlignVertical: 'center',
+    paddingLeft: 50,
   },
 });

@@ -1,30 +1,8 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  StyleSheet,
-  FlatList,
-  Image,
-  ImageBackground,
-  TouchableOpacity,
-} from 'react-native';
+import {View, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import {Icon} from 'native-base';
+import renderItem from '../shared/renderItem';
 export default function Feed({navigation}) {
-  const renderFooter = () => {
-    return (
-      <View style={styles.footer}>
-        <TouchableOpacity
-          style={styles.customTou}
-          onPress={() => navigation.navigate('Filters')}>
-          <Icon
-            type="AntDesign"
-            name="filter"
-            style={{fontSize: 30, color: 'white', marginLeft: 15}}
-          />
-        </TouchableOpacity>
-      </View>
-    );
-  };
   const [data, setData] = useState([
     {
       id: '1',
@@ -52,55 +30,13 @@ export default function Feed({navigation}) {
       <FlatList
         style={styles.feed}
         data={data}
-        renderItem={({item}) => (
-          <View style={styles.feedItem}>
-            <Image source={{uri: item.avatar}} style={styles.avatar} />
-            <View style={styles.view1}>
-              <View style={styles.view2}>
-                <View>
-                  <Text style={styles.name}>{item.name}</Text>
-                  <Text style={styles.timestamp}>{item.time}</Text>
-                </View>
-                <Icon type="Feather" name="more-horizontal" />
-              </View>
-              <ImageBackground
-                source={{uri: item.image}}
-                style={styles.imgpost}>
-                <Text style={styles.txtimg}>{item.cap}</Text>
-              </ImageBackground>
-              <View style={styles.viewicon}>
-                <View style={styles.viewicon}>
-                  <Icon type="AntDesign" name="heart" style={styles.icon} />
-                  <Text style={styles.txticon}>2K</Text>
-                </View>
-                <View style={styles.viewicon}>
-                  <Icon
-                    type="MaterialCommunityIcons"
-                    name="comment-text-outline"
-                    style={styles.icon1}
-                  />
-                  <Text style={styles.txticon}>98</Text>
-                </View>
-
-                <View style={styles.viewicon}>
-                  <Icon type="AntDesign" name="sharealt" style={styles.icon1} />
-                  <Text style={styles.txticon}>68</Text>
-                </View>
-              </View>
-            </View>
-          </View>
-        )}
+        renderItem={({item}) => renderItem(item)}
         keyExtractor={item => item.id}
-        //ListFooterComponent={renderFooter}
       />
       <TouchableOpacity
         style={styles.customTou}
         onPress={() => navigation.navigate('Filters')}>
-        <Icon
-          type="AntDesign"
-          name="filter"
-          style={{fontSize: 30, color: 'white', marginLeft: 15}}
-        />
+        <Icon type="AntDesign" name="filter" style={styles.icon} />
       </TouchableOpacity>
     </View>
   );
@@ -113,67 +49,6 @@ const styles = StyleSheet.create({
   feed: {
     marginHorizontal: 16,
   },
-  feedItem: {
-    backgroundColor: 'white',
-    borderRadius: 5,
-    padding: 6,
-    flexDirection: 'row',
-    marginVertical: 8,
-  },
-  avatar: {
-    width: 36,
-    height: 36,
-    borderRadius: 18,
-    marginRight: 16,
-  },
-  name: {
-    fontSize: 15,
-    fontWeight: '500',
-    color: '#454D65',
-  },
-  timestamp: {
-    fontSize: 11,
-    color: '#C4C6CE',
-    marginTop: 4,
-  },
-  view1: {
-    flex: 1,
-  },
-  view2: {
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-  imgpost: {
-    width: '100%',
-    height: 200,
-    borderRadius: 5,
-    marginVertical: 16,
-    flexDirection: 'row',
-  },
-  viewicon: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    justifyContent: 'space-around',
-  },
-  icon: {
-    fontSize: 20,
-    color: 'red',
-  },
-  icon1: {
-    fontSize: 20,
-  },
-  txticon: {
-    fontSize: 16,
-    marginLeft: 5,
-  },
-  txtimg: {
-    fontWeight: 'bold',
-    color: 'white',
-    position: 'absolute',
-    bottom: 0,
-    left: 0,
-  },
   customTou: {
     width: 60,
     height: 60,
@@ -182,12 +57,12 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
     position: 'absolute',
-    marginHorizontal: 180,
-    marginVertical: 500,
+    bottom: 100,
+    alignSelf: 'center',
   },
-  footer: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
+  icon: {
+    fontSize: 30,
+    color: 'white',
+    marginLeft: 15,
   },
 });

@@ -1,7 +1,7 @@
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Header from '../shared/header';
-import Feed from '../screens/home';
+import Feed from '../screens/Home';
 import Filters from '../screens/filters';
 
 const Stack = createStackNavigator();
@@ -30,7 +30,13 @@ export default function Navigator() {
       <Stack.Screen
         name="Filters"
         component={Filters}
-        options={{title: 'Filters'}}
+        ooptions={({navigation}) => {
+          return {
+            headerTitle: () => (
+              <Header navigation={navigation} title="Fillters" />
+            ),
+          };
+        }}
       />
     </Stack.Navigator>
   );

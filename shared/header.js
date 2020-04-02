@@ -16,6 +16,7 @@ export default function Header({navigation, title}) {
         style={styles.icon}
       />
       <Text style={styles.headerText}>{title}</Text>
+      <Icon type="FontAwesome5" name="clipboard" style={styles.icon2} />
     </View>
   );
 }
@@ -31,10 +32,9 @@ const styles = StyleSheet.create({
     fontSize: 20,
     color: '#333',
     letterSpacing: 1,
-    marginLeft: 50,
+    marginLeft: 150,
   },
   icon: {
-    position: 'absolute',
     left: 16,
   },
   headerImg: {
@@ -45,5 +45,9 @@ const styles = StyleSheet.create({
   },
   headerTitle: {
     flexDirection: 'row',
+  },
+  icon2: {
+    left: 120,
+    fontSize: 25,
   },
 });
