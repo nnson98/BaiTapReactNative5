@@ -1,9 +1,9 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import Card from '../shared/card';
-import Product from '../shared/productFor';
-import Price from '../shared/priceRange';
-import Color from '../shared/colorFillter';
+import Card from '../component/card';
+import Product from '../component/productFor';
+import Price from '../component/priceRange';
+import Color from '../component/colorFillter';
 export default function Filters(props) {
   return (
     <View style={styles.container}>

@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {View, StyleSheet, FlatList, TouchableOpacity} from 'react-native';
 import {Icon} from 'native-base';
-import renderItem from '../shared/renderItem';
+import renderItem from '../component/renderItem';
 export default function Feed({navigation}) {
   const [data, setData] = useState([
     {

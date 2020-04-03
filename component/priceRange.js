@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
 import {View, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import MultiSlider from '@ptomasroos/react-native-multi-slider';
-import CustomMarker from './CustomMarker';
-import CustomLabel from './CustomLabel';
+import CustomMarker from '../shared/CustomMarker';
+import CustomLabel from '../shared/CustomLabel';
 function Price(props) {
   const [
     nonCollidingMultiSliderValue,
